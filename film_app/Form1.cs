@@ -16,47 +16,22 @@ namespace film_app
         {
 
             InitializeComponent();
-            
+
         }
         public List<FilmContainer> _films = new List<FilmContainer>();
 
-        public void Form1_Load(object sender, EventArgs e)
-        {
-            listBox1.Refresh();
-
-        }
-
-        private void cmbBoxCounty_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-
-
-        }
 
         private void button5_Click(object sender, EventArgs e)
         {
             CreateFilmPage filmPage = new CreateFilmPage(this);
-
             filmPage.Show();
-
-          
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void listBox1_DoubleClick(object sender, EventArgs e)
         {
-           
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
             int index = listBox1.SelectedIndex;
             FilmPage f = new FilmPage(_films[index]);
             f.Show();
-            
-           
-
-
         }
     }
 }

@@ -14,7 +14,9 @@ using System.Windows.Forms;
 using Microsoft.DirectX.AudioVideoPlayback;
 
 
-
+//int index = listBox2.SelectedIndex;
+//FilmPage f = new FilmPage(_films[index]);
+//f.Show();
 namespace film_app
 {
 
@@ -22,6 +24,7 @@ namespace film_app
     {
         public FilmContainer filmContainer;
         MainPage KRFlim;
+        public string path;
         public CreateFilmPage(MainPage owner)
         {
             KRFlim = owner;
@@ -30,7 +33,6 @@ namespace film_app
         List<string> Country = new List<string>()
         {
             "Россия","Сша","Канада","Германия","Бразилия","Япония"
-
         };
         List<string> Genres = new List<string>()
         {
@@ -40,14 +42,10 @@ namespace film_app
         List<string> Languages = new List<string>()
         {
             "Русский","Английский"
-
         };
-        
-
-        public string path;
+          
         private void CreateFilmPage_Load(object sender, EventArgs e)
         {
-
             cmbBoxCountry.DataSource = Country; // Передача данных в комбобокс
             cmbBoxgGenre.DataSource = Genres;
             cmbBoxLang.DataSource = Languages;
@@ -61,26 +59,14 @@ namespace film_app
         public void btnCreate_Click(object sender, EventArgs e)
         {
             FilmContainer filmContainer = new FilmContainer(txtBoxMainFilm.Text, txtBoxDesc.Text, txtBoxAge.Text, txtBoxQuality.Text, txtBoxActors.Text, txtBoxYear.Text, cmbBoxCountry.Text, cmbBoxgGenre.Text, picCover1.Image, path);
-            FilmPage filmPage = new FilmPage(filmContainer);
-            
+            FilmPage filmPage = new FilmPage(filmContainer);            
             KRFlim.listBox1.Items.Add(filmContainer.MainNameFilm);
-            KRFlim._films.Add(filmContainer);
-
-           
-            
-
-
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
+            KRFlim._films.Add(filmContainer);    
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG|All files (*.*)|*.*";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -88,15 +74,12 @@ namespace film_app
                 try
                 {
                     picCover1.Image = new Bitmap(openFileDialog.FileName);
-
                 }
                 catch
                 {
                     DialogResult result = MessageBox.Show("Невозможно открыть выбранный файл",
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                 }
-
             }
         }
 
@@ -114,15 +97,7 @@ namespace film_app
 
         public void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //int index = listBox2.SelectedIndex;
-            //FilmPage f = new FilmPage(_films[index]);
-            //f.Show();
-
-        }
-
-        private void listBox2_DoubleClick(object sender, EventArgs e)
-        {
-            
+           
         }
     }
 }

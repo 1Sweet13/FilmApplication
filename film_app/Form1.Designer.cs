@@ -54,13 +54,14 @@
             // 
             // listBox1
             // 
+            listBox1.BackColor = Color.MediumSlateBlue;
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 15;
-            listBox1.Location = new Point(1, 73);
+            listBox1.Location = new Point(1, 71);
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(349, 394);
             listBox1.TabIndex = 5;
-            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
+            listBox1.DoubleClick += listBox1_DoubleClick;
             // 
             // MainPage
             // 
@@ -72,8 +73,7 @@
             Controls.Add(button5);
             Controls.Add(button1);
             Name = "MainPage";
-            Text = "KRFilm";
-            Load += Form1_Load;
+            Text = "FilmApp";
             ResumeLayout(false);
         }
 

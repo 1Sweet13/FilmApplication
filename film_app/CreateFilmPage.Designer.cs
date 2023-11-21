@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            listBox2 = new ListBox();
             button3 = new Button();
             txtBoxYear = new TextBox();
             label9 = new Label();
@@ -59,7 +58,6 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(listBox2);
             panel1.Controls.Add(button3);
             panel1.Controls.Add(txtBoxYear);
             panel1.Controls.Add(label9);
@@ -87,22 +85,10 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(604, 704);
             panel1.TabIndex = 1;
-            panel1.Paint += panel1_Paint;
-            // 
-            // listBox2
-            // 
-            listBox2.FormattingEnabled = true;
-            listBox2.ItemHeight = 15;
-            listBox2.Location = new Point(3, 459);
-            listBox2.Name = "listBox2";
-            listBox2.Size = new Size(580, 94);
-            listBox2.TabIndex = 25;
-            listBox2.SelectedIndexChanged += listBox2_SelectedIndexChanged;
-            listBox2.DoubleClick += listBox2_DoubleClick;
             // 
             // button3
             // 
-            button3.Location = new Point(315, 385);
+            button3.Location = new Point(300, 385);
             button3.Name = "button3";
             button3.Size = new Size(79, 33);
             button3.TabIndex = 23;
@@ -342,6 +328,5 @@
         private TextBox txtBoxYear;
         private Label label9;
         private Button button3;
-        private ListBox listBox2;
     }
 }

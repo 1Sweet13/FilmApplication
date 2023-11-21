@@ -36,6 +36,7 @@ namespace film_app
             this.filmContainer = filmContainer;
             axWindowsMediaPlayer1.URL = filmContainer.pathURI;
             axWindowsMediaPlayer1.Ctlcontrols.stop();
+            axWindowsMediaPlayer1.Ctlcontrols.pause();
 
 
         }
