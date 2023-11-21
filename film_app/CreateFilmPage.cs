@@ -7,6 +7,7 @@ using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,10 +17,14 @@ using Microsoft.DirectX.AudioVideoPlayback;
 
 namespace film_app
 {
+
     public partial class CreateFilmPage : Form
     {
-        public CreateFilmPage()
+        public FilmContainer filmContainer;
+        MainPage KRFlim;
+        public CreateFilmPage(MainPage owner)
         {
+            KRFlim = owner;
             InitializeComponent();
         }
         List<string> Country = new List<string>()
@@ -37,6 +42,7 @@ namespace film_app
             "Русский","Английский"
 
         };
+        
 
         public string path;
         private void CreateFilmPage_Load(object sender, EventArgs e)
@@ -52,11 +58,19 @@ namespace film_app
             Close();
         }
 
-        private void btnCreate_Click(object sender, EventArgs e)
+        public void btnCreate_Click(object sender, EventArgs e)
         {
-            FilmContainer filmContainer = new FilmContainer(txtBoxMainFilm.Text, txtBoxDesc.Text, txtBoxAge.Text, txtBoxQuality.Text, txtBoxActors.Text, txtBoxYear.Text, cmbBoxCountry.Text, cmbBoxgGenre.Text, picCover1.Image,path);
+            FilmContainer filmContainer = new FilmContainer(txtBoxMainFilm.Text, txtBoxDesc.Text, txtBoxAge.Text, txtBoxQuality.Text, txtBoxActors.Text, txtBoxYear.Text, cmbBoxCountry.Text, cmbBoxgGenre.Text, picCover1.Image, path);
             FilmPage filmPage = new FilmPage(filmContainer);
-            filmPage.Show();
+            
+            KRFlim.listBox1.Items.Add(filmContainer.MainNameFilm);
+            KRFlim._films.Add(filmContainer);
+
+           
+            
+
+
+
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -93,10 +107,21 @@ namespace film_app
             if (openVideoDialog.ShowDialog() == DialogResult.OK)
             {
                 path = openVideoDialog.FileName;
-                
-                
 
             }
+
+        }
+
+        public void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //int index = listBox2.SelectedIndex;
+            //FilmPage f = new FilmPage(_films[index]);
+            //f.Show();
+
+        }
+
+        private void listBox2_DoubleClick(object sender, EventArgs e)
+        {
             
         }
     }

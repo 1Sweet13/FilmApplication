@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            listBox2 = new ListBox();
             button3 = new Button();
             txtBoxYear = new TextBox();
             label9 = new Label();
@@ -52,14 +53,13 @@
             label2 = new Label();
             label1 = new Label();
             txtBoxMainFilm = new TextBox();
-            label10 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picCover1).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
-            panel1.Controls.Add(label10);
+            panel1.Controls.Add(listBox2);
             panel1.Controls.Add(button3);
             panel1.Controls.Add(txtBoxYear);
             panel1.Controls.Add(label9);
@@ -88,6 +88,17 @@
             panel1.Size = new Size(604, 704);
             panel1.TabIndex = 1;
             panel1.Paint += panel1_Paint;
+            // 
+            // listBox2
+            // 
+            listBox2.FormattingEnabled = true;
+            listBox2.ItemHeight = 15;
+            listBox2.Location = new Point(3, 459);
+            listBox2.Name = "listBox2";
+            listBox2.Size = new Size(580, 94);
+            listBox2.TabIndex = 25;
+            listBox2.SelectedIndexChanged += listBox2_SelectedIndexChanged;
+            listBox2.DoubleClick += listBox2_DoubleClick;
             // 
             // button3
             // 
@@ -288,15 +299,6 @@
             txtBoxMainFilm.Size = new Size(168, 23);
             txtBoxMainFilm.TabIndex = 0;
             // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new Point(250, 492);
-            label10.Name = "label10";
-            label10.Size = new Size(44, 15);
-            label10.TabIndex = 24;
-            label10.Text = "label10";
-            // 
             // CreateFilmPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -340,6 +342,6 @@
         private TextBox txtBoxYear;
         private Label label9;
         private Button button3;
-        private Label label10;
+        private ListBox listBox2;
     }
 }

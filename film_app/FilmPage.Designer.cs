@@ -80,6 +80,7 @@
             axWindowsMediaPlayer1.OcxState = (AxHost.State)resources.GetObject("axWindowsMediaPlayer1.OcxState");
             axWindowsMediaPlayer1.Size = new Size(615, 375);
             axWindowsMediaPlayer1.TabIndex = 17;
+            axWindowsMediaPlayer1.Enter += axWindowsMediaPlayer1_Enter;
             // 
             // lblDesc
             // 
@@ -229,8 +230,6 @@
         private Panel panel1;
         private Label label3;
         private Label lblDesc;
-        private Label labelFilm;
-        private PictureBox picCover2;
         private Label label1;
         private Label lblCount;
         private Label lblYear;
@@ -239,9 +238,11 @@
         private Label lblQual;
         private Label label4;
         private Panel panel2;
-        private Label lblActors;
         private Label lblGenre;
         private Label label5;
-        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
+        public PictureBox picCover2;
+        public Label labelFilm;
+        public Label lblActors;
+        public AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
     }
 }

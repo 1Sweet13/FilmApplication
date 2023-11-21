@@ -17,7 +17,6 @@ namespace film_app
         public string Genres;
         public string pathURI;
         public Image Image;
-        
 
 
         public FilmContainer
@@ -32,8 +31,9 @@ namespace film_app
             string genres,
             Image image,
             string pathURI
-            
-            
+
+
+
             )
         {
             MainNameFilm = name;
@@ -46,7 +46,7 @@ namespace film_app
             Genres = genres;
             Image = image;
             this.pathURI = pathURI;
-        }
+            }
 
 
 

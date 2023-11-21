@@ -35,7 +35,7 @@ namespace film_app
             lblActors.MaximumSize = new Size(321, 75);
             this.filmContainer = filmContainer;
             axWindowsMediaPlayer1.URL = filmContainer.pathURI;
-
+            axWindowsMediaPlayer1.Ctlcontrols.stop();
 
 
         }
@@ -43,18 +43,22 @@ namespace film_app
 
         public void FilmPage_Load(object sender, EventArgs e)
         {
+
             axWindowsMediaPlayer1.URL = filmContainer.pathURI;
+           
+
 
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
         }
 
+        private void axWindowsMediaPlayer1_Enter(object sender, EventArgs e)
+        {
 
-
-        
+        }
     }
 }

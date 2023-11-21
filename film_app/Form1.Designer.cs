@@ -1,11 +1,11 @@
 ﻿namespace film_app
 {
-    partial class KRFlim
+    public partial class MainPage
     {
         /// <summary>
         ///  Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        public System.ComponentModel.IContainer components = null;
 
         /// <summary>
         ///  Clean up any resources being used.
@@ -30,12 +30,12 @@
         {
             button1 = new Button();
             button5 = new Button();
-            listView1 = new ListView();
+            listBox1 = new ListBox();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(1, 1);
+            button1.Location = new Point(1, 2);
             button1.Name = "button1";
             button1.Size = new Size(88, 65);
             button1.TabIndex = 0;
@@ -44,31 +44,34 @@
             // 
             // button5
             // 
-            button5.Location = new Point(200, 473);
+            button5.Location = new Point(221, 2);
             button5.Name = "button5";
-            button5.Size = new Size(150, 23);
+            button5.Size = new Size(129, 23);
             button5.TabIndex = 4;
             button5.Text = "Добавить фильм";
             button5.UseVisualStyleBackColor = true;
             button5.Click += button5_Click;
             // 
-            // listView1
+            // listBox1
             // 
-            listView1.Location = new Point(12, 72);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(338, 395);
-            listView1.TabIndex = 5;
-            listView1.UseCompatibleStateImageBehavior = false;
+            listBox1.FormattingEnabled = true;
+            listBox1.ItemHeight = 15;
+            listBox1.Location = new Point(1, 73);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(349, 394);
+            listBox1.TabIndex = 5;
+            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
-            // KRFlim
+            // MainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(362, 508);
-            Controls.Add(listView1);
+            BackColor = SystemColors.Highlight;
+            ClientSize = new Size(355, 474);
+            Controls.Add(listBox1);
             Controls.Add(button5);
             Controls.Add(button1);
-            Name = "KRFlim";
+            Name = "MainPage";
             Text = "KRFilm";
             Load += Form1_Load;
             ResumeLayout(false);
@@ -78,6 +81,6 @@
 
         private Button button1;
         private Button button5;
-        private ListView listView1;
+        public ListBox listBox1;
     }
 }
