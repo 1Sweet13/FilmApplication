@@ -45,20 +45,7 @@ namespace film_app
         public void FilmPage_Load(object sender, EventArgs e)
         {
 
-            axWindowsMediaPlayer1.URL = filmContainer.pathURI;
-           
-
-
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void axWindowsMediaPlayer1_Enter(object sender, EventArgs e)
-        {
+            axWindowsMediaPlayer1.URL = filmContainer.pathURI;       
 
         }
     }
