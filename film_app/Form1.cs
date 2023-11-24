@@ -31,7 +31,16 @@ namespace film_app
         {
             int index = listBox1.SelectedIndex;
             FilmPage f = new FilmPage(_films[index]);
+            
             f.Show();
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = listBox1.SelectedIndex;
+            FilmPage a = new FilmPage(_films[index]);
+            pictureBox1.Image = a.picCover2.Image;
+
         }
     }
 }
