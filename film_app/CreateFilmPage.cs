@@ -95,9 +95,5 @@ namespace film_app
 
         }
 
-        public void listBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           
-        }
     }
 }
