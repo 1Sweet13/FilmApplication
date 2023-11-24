@@ -80,6 +80,7 @@
             axWindowsMediaPlayer1.OcxState = (AxHost.State)resources.GetObject("axWindowsMediaPlayer1.OcxState");
             axWindowsMediaPlayer1.Size = new Size(615, 375);
             axWindowsMediaPlayer1.TabIndex = 17;
+            axWindowsMediaPlayer1.Enter += axWindowsMediaPlayer1_Enter;
             // 
             // lblDesc
             // 
