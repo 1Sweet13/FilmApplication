@@ -12,7 +12,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.DirectX.AudioVideoPlayback;
-
+using System.Data.SqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Xml;
 
 //int index = listBox2.SelectedIndex;
 //FilmPage f = new FilmPage(_films[index]);
@@ -24,7 +26,10 @@ namespace film_app
     {
         public FilmContainer filmContainer;
         MainPage KRFlim;
+
         public string path;
+
+
         public CreateFilmPage(MainPage owner)
         {
             KRFlim = owner;
@@ -43,7 +48,7 @@ namespace film_app
         {
             "Русский","Английский"
         };
-          
+
         private void CreateFilmPage_Load(object sender, EventArgs e)
         {
             cmbBoxCountry.DataSource = Country; // Передача данных в комбобокс
@@ -56,12 +61,20 @@ namespace film_app
             Close();
         }
 
-        public void btnCreate_Click(object sender, EventArgs e)
+        public async void btnCreate_Click(object sender, EventArgs e)
         {
             FilmContainer filmContainer = new FilmContainer(txtBoxMainFilm.Text, txtBoxDesc.Text, txtBoxAge.Text, txtBoxQuality.Text, txtBoxActors.Text, txtBoxYear.Text, cmbBoxCountry.Text, cmbBoxgGenre.Text, picCover1.Image, path);
-            FilmPage filmPage = new FilmPage(filmContainer);            
-            KRFlim.listBox1.Items.Add(filmContainer.MainNameFilm);
-            KRFlim._films.Add(filmContainer);    
+            FilmPage filmPage = new FilmPage(filmContainer);
+            KRFlim.listBox1.Items.Add(filmContainer.MainNameFilm + " " + txtBoxYear.Text);
+            KRFlim._films.Add(filmContainer);
+
+            SqlCommand command = new SqlCommand("INSERT INTO [Filmlist] (NameFilm, Description)VALUES(@NameFilm,@Description)", KRFlim.sqlConnection);
+
+            command.Parameters.AddWithValue("NameFilm", txtBoxMainFilm.Text); // Добавление имени с 1 текстбокса
+
+            command.Parameters.AddWithValue("Description", txtBoxDesc.Text);// Добавление прайса со 2 текстбокса
+
+            await command.ExecuteNonQueryAsync();
 
         }
 
@@ -91,9 +104,16 @@ namespace film_app
             {
                 path = openVideoDialog.FileName;
 
+
             }
+
+
 
         }
 
+        private void txtBoxDesc_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

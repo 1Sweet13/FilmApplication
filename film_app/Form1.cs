@@ -3,15 +3,21 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-
+using System.Data;
+using System.Data.SqlClient;
+using SQLitePCL;
+using Microsoft.Data.Sqlite;
 
 
 namespace film_app
 {
+
     public partial class MainPage : Form
     {
         public FilmContainer filmContainer;
+        public SqlConnection sqlConnection;
 
+        List <FilmContainer> filmList;
         public MainPage()
         {
 
@@ -27,11 +33,10 @@ namespace film_app
             filmPage.Show();
         }
 
-        private void listBox1_DoubleClick(object sender, EventArgs e)
+        private  void listBox1_DoubleClick(object sender, EventArgs e)
         {
             int index = listBox1.SelectedIndex;
             FilmPage f = new FilmPage(_films[index]);
-            
             f.Show();
         }
 
@@ -39,8 +44,81 @@ namespace film_app
         {
             int index = listBox1.SelectedIndex;
             FilmPage a = new FilmPage(_films[index]);
+
             pictureBox1.Image = a.picCover2.Image;
+            label1.Text = a.labelFilm.Text;
+
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void button4_MouseEnter(object sender, EventArgs e)
+        {
+            button4.BackColor = Color.Red;
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void button4_MouseLeave(object sender, EventArgs e)
+        {
+            button4.BackColor = Color.Transparent;
+        }
+
+        private void MainPage_MouseDown(object sender, MouseEventArgs e)
+        {
+            base.Capture = false;
+            Message m = Message.Create(base.Handle, 0xa1, new IntPtr(2), IntPtr.Zero);
+            this.WndProc(ref m);
+        }
+
+        private async void MainPage_Load(object sender, EventArgs e)
+        {
+            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\ProjectC#\film_app\film_app\Filmslist.mdf;Integrated Security=True";
+
+            sqlConnection = new SqlConnection(connectionString);
+
+            await sqlConnection.OpenAsync();
+
+            if (sqlConnection.State == ConnectionState.Open)
+            {
+                MessageBox.Show("Успешно");
+            }
+            SqlDataReader? sqlReader = null;
+
+            SqlCommand command = new SqlCommand("SELECT * FROM [Filmlist]", sqlConnection);
+            try
+            {
+                sqlReader = await command.ExecuteReaderAsync(); // Считывает таблицу
+                while (await sqlReader.ReadAsync())
+                {
+                    
+
+                    listBox1.Items.Add(Convert.ToString(sqlReader["id"]) + "  " + Convert.ToString(sqlReader["NameFilm"]));
+                    
+                    // Добавление элементов в список
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            finally
+            {
+                if (sqlReader != null)
+                {
+                    sqlReader.Close();
+                }
+            }
+
+        }
+
     }
 }
