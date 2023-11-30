@@ -30,7 +30,7 @@ namespace film_app
             lblActors.Text = filmContainer.Actors;
             lblGenre.Text = filmContainer.Genres;
             lblQual.Text = filmContainer.quality;
-            picCover2.Image = filmContainer.Image;
+            picCover2.Image = Image.FromFile(filmContainer.pathImage);
             lblDesc.MaximumSize = new Size(305, 217);
             lblActors.MaximumSize = new Size(321, 75);
             this.filmContainer = filmContainer;

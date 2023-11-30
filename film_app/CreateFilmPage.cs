@@ -26,9 +26,11 @@ namespace film_app
     {
         public FilmContainer filmContainer;
         MainPage KRFlim;
+        
+       
 
         public string path;
-
+        public string pathImg;
 
         public CreateFilmPage(MainPage owner)
         {
@@ -49,6 +51,7 @@ namespace film_app
             "Русский","Английский"
         };
 
+        
         private void CreateFilmPage_Load(object sender, EventArgs e)
         {
             cmbBoxCountry.DataSource = Country; // Передача данных в комбобокс
@@ -58,21 +61,23 @@ namespace film_app
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Close();
+            Close();          
         }
 
         public async void btnCreate_Click(object sender, EventArgs e)
         {
-            FilmContainer filmContainer = new FilmContainer(txtBoxMainFilm.Text, txtBoxDesc.Text, txtBoxAge.Text, txtBoxQuality.Text, txtBoxActors.Text, txtBoxYear.Text, cmbBoxCountry.Text, cmbBoxgGenre.Text, picCover1.Image, path);
+            FilmContainer filmContainer = new FilmContainer(txtBoxMainFilm.Text, txtBoxDesc.Text, txtBoxAge.Text, txtBoxQuality.Text, txtBoxActors.Text, txtBoxYear.Text, cmbBoxCountry.Text, cmbBoxgGenre.Text,pathImg, path) ;
             FilmPage filmPage = new FilmPage(filmContainer);
             KRFlim.listBox1.Items.Add(filmContainer.MainNameFilm + " " + txtBoxYear.Text);
             KRFlim._films.Add(filmContainer);
 
-            SqlCommand command = new SqlCommand("INSERT INTO [Filmlist] (NameFilm, Description)VALUES(@NameFilm,@Description)", KRFlim.sqlConnection);
+            SqlCommand command = new SqlCommand("INSERT INTO [Filmlist] (NameFilm, Description, PathName)VALUES(@NameFilm,@Description,@PathName)", KRFlim.sqlConnection);
 
-            command.Parameters.AddWithValue("NameFilm", txtBoxMainFilm.Text); // Добавление имени с 1 текстбокса
+            command.Parameters.AddWithValue("NameFilm", txtBoxMainFilm.Text); 
 
-            command.Parameters.AddWithValue("Description", txtBoxDesc.Text);// Добавление прайса со 2 текстбокса
+            command.Parameters.AddWithValue("Description", txtBoxDesc.Text);
+
+            command.Parameters.AddWithValue("PathName", pathImg);
 
             await command.ExecuteNonQueryAsync();
 
@@ -86,7 +91,8 @@ namespace film_app
             {
                 try
                 {
-                    picCover1.Image = new Bitmap(openFileDialog.FileName);
+                    pathImg = openFileDialog.FileName;
+                    picCover1.Image = new Bitmap(pathImg);  
                 }
                 catch
                 {
@@ -107,13 +113,7 @@ namespace film_app
 
             }
 
-
-
         }
 
-        private void txtBoxDesc_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

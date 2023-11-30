@@ -5,27 +5,22 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using System.Data;
 using System.Data.SqlClient;
-using SQLitePCL;
-using Microsoft.Data.Sqlite;
+
 
 
 namespace film_app
 {
 
     public partial class MainPage : Form
-    {
-        public FilmContainer filmContainer;
+    {   
         public SqlConnection sqlConnection;
 
-        List <FilmContainer> filmList;
         public MainPage()
         {
-
-            InitializeComponent();
-
+            InitializeComponent();      
         }
+            
         public List<FilmContainer> _films = new List<FilmContainer>();
-
 
         private void button5_Click(object sender, EventArgs e)
         {
@@ -34,7 +29,7 @@ namespace film_app
         }
 
         private  void listBox1_DoubleClick(object sender, EventArgs e)
-        {
+        {      
             int index = listBox1.SelectedIndex;
             FilmPage f = new FilmPage(_films[index]);
             f.Show();
@@ -44,11 +39,10 @@ namespace film_app
         {
             int index = listBox1.SelectedIndex;
             FilmPage a = new FilmPage(_films[index]);
-
-            pictureBox1.Image = a.picCover2.Image;
             label1.Text = a.labelFilm.Text;
-
-
+            pictureBox1.Image = a.picCover2.Image;
+            
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -66,7 +60,7 @@ namespace film_app
             Close();
         }
 
-        private void button4_MouseLeave(object sender, EventArgs e)
+        private void   button4_MouseLeave(object sender, EventArgs e)
         {
             button4.BackColor = Color.Transparent;
         }
@@ -80,10 +74,9 @@ namespace film_app
 
         private async void MainPage_Load(object sender, EventArgs e)
         {
+
             string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\ProjectC#\film_app\film_app\Filmslist.mdf;Integrated Security=True";
-
             sqlConnection = new SqlConnection(connectionString);
-
             await sqlConnection.OpenAsync();
 
             if (sqlConnection.State == ConnectionState.Open)
@@ -97,12 +90,10 @@ namespace film_app
             {
                 sqlReader = await command.ExecuteReaderAsync(); // Считывает таблицу
                 while (await sqlReader.ReadAsync())
-                {
-                    
-
-                    listBox1.Items.Add(Convert.ToString(sqlReader["id"]) + "  " + Convert.ToString(sqlReader["NameFilm"]));
-                    
-                    // Добавление элементов в список
+                {                   
+                    FilmContainer film = new FilmContainer(Convert.ToString(sqlReader["NameFilm"]), Convert.ToString(sqlReader["Description"]), "","","","","","", Convert.ToString(sqlReader["PathName"]), "");
+                    _films.Add(film);
+                    listBox1.Items.Add(film.MainNameFilm);
                 }
             }
             catch (Exception ex)
@@ -119,6 +110,7 @@ namespace film_app
             }
 
         }
+
 
     }
 }

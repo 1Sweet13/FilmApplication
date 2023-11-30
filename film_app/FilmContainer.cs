@@ -1,7 +1,4 @@
 ﻿
-
-using Microsoft.DirectX.AudioVideoPlayback;
-
 namespace film_app
 {
 
@@ -16,24 +13,20 @@ namespace film_app
         public string Country;
         public string Genres;
         public string pathURI;
-        public Image Image;
-
+        public string pathImage;
 
         public FilmContainer
             (
             string name,
-            string descFilm, 
+            string descFilm,
             string age,
             string qual,
             string actors,
             string year,
             string count,
             string genres,
-            Image image,
+            string image,
             string pathURI
-
-
-
             )
         {
             MainNameFilm = name;
@@ -44,18 +37,9 @@ namespace film_app
             Year = year;
             Country = count;
             Genres = genres;
-            Image = image;
+            pathImage = image;
             this.pathURI = pathURI;
-            }
-
-
-
-
-
-
-
-
-
+        }
 
     }
 }

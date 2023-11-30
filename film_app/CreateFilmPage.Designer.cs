@@ -259,7 +259,6 @@
             txtBoxDesc.Name = "txtBoxDesc";
             txtBoxDesc.Size = new Size(288, 84);
             txtBoxDesc.TabIndex = 3;
-            txtBoxDesc.TextChanged += txtBoxDesc_TextChanged;
             // 
             // label2
             // 

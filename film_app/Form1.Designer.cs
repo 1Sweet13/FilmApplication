@@ -167,7 +167,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             BackgroundImageLayout = ImageLayout.None;
-            ClientSize = new Size(538, 604);
+            ClientSize = new Size(540, 574);
             Controls.Add(button4);
             Controls.Add(button1);
             Controls.Add(panel1);
